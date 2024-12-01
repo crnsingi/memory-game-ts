@@ -41,6 +41,7 @@ const levels: Level [] = [
 
 function App() {
   const [level, setLevel] = React.useState(0);
+  const [gameCards, setGameCards] = React.useState(() => createGameCards(levels[0].cardCount))
   return  <div> Memory Game</div>;
   
 }
