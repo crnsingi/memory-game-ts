@@ -32,10 +32,15 @@ type Level = {
 }
 
 const levels: Level [] = [
-  { cardCount: 3, maxScore: 8 }, j
+  { cardCount: 3, maxScore: 8 },
+  { cardCount: 4, maxScore: 10 },
+  { cardCount: 5, maxScore: 12 },
+  { cardCount: 6, maxScore: 14 },
+  { cardCount: 7, maxScore: 16 },
 ]
 
 function App() {
+  const [level, setLevel] = React.useState(0);
   return  <div> Memory Game</div>;
   
 }
