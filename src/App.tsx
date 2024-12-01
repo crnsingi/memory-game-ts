@@ -9,6 +9,11 @@ function createGameCards(uniqueCards: number): GameCard[] {
       isMatched: false,
       id: `${value}-1`
     })
+    gameCards.push({
+      value,
+      isMatched: false,
+      id: `${value}-2`
+    })
   }
 }
 
