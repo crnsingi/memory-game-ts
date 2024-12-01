@@ -1,10 +1,12 @@
 import React from 'react';
 import { GameCard } from './types';
 
-function suffleArray<T>(array: Array<T>): Array<T> {
+function shuffleArray<T>(array: Array<T>): Array<T> {
   for(let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1 ));
+    [array[i], array[j]] = [array[j], array[i]]
   }
+  return array
 }
 
 function createGameCards(uniqueCards: number): GameCard[] {
@@ -21,7 +23,7 @@ function createGameCards(uniqueCards: number): GameCard[] {
       id: `${value}-2`
     })
   }
-  return suffleArray(gameCards)
+  return shuffleArray(gameCards)
 }
 
 function App() {
