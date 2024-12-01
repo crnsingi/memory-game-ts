@@ -26,6 +26,10 @@ function createGameCards(uniqueCards: number): GameCard[] {
   return shuffleArray(gameCards)
 }
 
+type Level = { 
+  cardCount: number
+  maxScore: number
+}
 function App() {
   return  <div> Memory Game</div>;
   
