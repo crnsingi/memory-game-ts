@@ -24,5 +24,5 @@ export function Card({ card, isFlipped, isDisabled, onFlip }: CardProps) {
         >
             {isCardFlipped ? card.value : "?"}
         </button>
-    )
+    );
 }
