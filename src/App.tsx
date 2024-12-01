@@ -1,11 +1,8 @@
-import { useState } from 'react'
+import React from 'react';
 
 function App() {
-  return (
-    <div>
-      Memory Game
-    </div>
-  )
+  return  <div> Memory Game</div>;
+  
 }
 
 export default App
