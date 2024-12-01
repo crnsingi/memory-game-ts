@@ -15,6 +15,7 @@ function createGameCards(uniqueCards: number): GameCard[] {
       id: `${value}-2`
     })
   }
+  return suffleArray(gameCards)
 }
 
 function App() {
