@@ -30,6 +30,11 @@ type Level = {
   cardCount: number
   maxScore: number
 }
+
+const levels: Level [] = [
+  { cardCount: 3, maxScore: 8 }, j
+]
+
 function App() {
   return  <div> Memory Game</div>;
   
