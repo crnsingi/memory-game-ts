@@ -77,6 +77,7 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
         : prevGameCard,
     ),
   );
+  setFlippedCards([])
   }
 }, []);
 
