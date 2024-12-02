@@ -51,6 +51,8 @@ React.useEffect(() => {
   const levelConfig = levels[level]
   if(!levelConfig) {
     setGameCards([])
+  } else {
+    setGameCards(createGameCards(levelConfig.cardCount))
   }
 })
 
