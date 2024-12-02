@@ -78,6 +78,8 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
     ),
   );
   setFlippedCards([])
+  } else {
+    setFlippedCards(prev => prev.concat(gameCard))
   }
 }, []);
 
