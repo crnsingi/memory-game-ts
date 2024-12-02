@@ -44,6 +44,16 @@ function App() {
   const [gameCards, setGameCards] = React.useState(() => createGameCards(levels[0].cardCount))
   const [flippedCards, setFlippedCards] = React.useState([] as GameCard[])
   const [score, setScore] = React.useState(0)
+
+const isDone = gameCards.every(gameCard = gameCard.isMatched)
+
+React.useEffect(() => {
+  const levelConfig = levels[level]
+  if(!levelConfig) {
+    setGameCards([])
+  }
+})
+
   return  <div> Memory Game</div>;
   
 }
