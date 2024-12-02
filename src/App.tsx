@@ -65,10 +65,10 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
   if (flippedCards.length !== 1) {
     return
   }
-})
+  setScore((prev) => prev + 1);
+}, [])
 
   return  <div> Memory Game</div>;
-  
 }
 
 export default App
