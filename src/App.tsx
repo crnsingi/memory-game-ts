@@ -54,7 +54,8 @@ React.useEffect(() => {
   } else {
     setGameCards(createGameCards(levelConfig.cardCount))
   }
-})
+  setScore(0)
+}, [level])
 
   return  <div> Memory Game</div>;
   
