@@ -57,6 +57,12 @@ React.useEffect(() => {
   setScore(0)
 }, [level])
 
+const handleCardFlip = React.useCallback((gameCard: GameCard) => {
+  if (!flippedCards.length) {
+    
+  }
+})
+
   return  <div> Memory Game</div>;
   
 }
