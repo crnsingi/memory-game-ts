@@ -67,9 +67,18 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
   }
   setScore((prev) => prev + 1);
   if (flippedCards[0].value === gameCard.value) {
-
+    setGameCards((prevGameCards) =>
+      prevGameCards.map(prevGameCards) =>
+      [gameCard.id, flippedCards[0].id].includes(prevGameCard.id)
+        ? {
+          ...prevGameCard,
+          isMatched: true,
+        }
+        : prevGameCard,
+    ),
+  );
   }
-}, [])
+}, []);
 
   return  <div> Memory Game</div>;
 }
