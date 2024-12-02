@@ -59,7 +59,8 @@ React.useEffect(() => {
 
 const handleCardFlip = React.useCallback((gameCard: GameCard) => {
   if (!flippedCards.length) {
-    
+    setFlippedCards([gameCard])
+    return
   }
 })
 
