@@ -95,6 +95,10 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
     setLevel(prevLevel => prevLevel +1)
   }, [])
 
+  if (!levels[level]) {
+    return <h1>You win</h1>
+  }
+
   return  <div> Memory Game</div>;
 }
 
