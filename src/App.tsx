@@ -88,6 +88,7 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
 
   const handleRestart = React.useCallback(() => {
     setGameCards(createGameCards(levels[level].cardCount))
+    setScore(0)
 
   })
 
