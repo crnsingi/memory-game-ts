@@ -84,7 +84,11 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
       setFlippedCards([])
     }, 1000)
   }
-}, []);
+}, [flippedCards]);
+
+  const handleRestart = React.useCallback(() => {
+    
+  })
 
   return  <div> Memory Game</div>;
 }
