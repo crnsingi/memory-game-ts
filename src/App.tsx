@@ -103,6 +103,9 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
     <div className='flex flex-col items-center my-auto text-center'> 
     <h1 className='text-3xl'>Memory Game</h1>
     <div className='flex flex-wrap justify-center'>
+      {createGameCards.map(gameCard => (
+        
+      ))}
 
     </div>
     </div>
