@@ -111,8 +111,12 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
         isFlipped={flippedCards.some(flippedCard => flippedCard.id === gameCard.id)}
         isDisabled={flippedCards.length === 2}
         onFlip={handleCardFlip}
-
+        />
       ))}
+    </div>
+    <div>
+      <p>Level: {level +1}</p>
+      <p>Score: {score}</p>
 
     </div>
     </div>
