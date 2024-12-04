@@ -1,5 +1,6 @@
 import React from 'react';
 import { GameCard } from './types';
+import { Card } from './card';
 
 function shuffleArray<T>(array: Array<T>): Array<T> {
   for(let i = array.length - 1; i > 0; i--) {
@@ -104,7 +105,9 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
     <h1 className='text-3xl'>Memory Game</h1>
     <div className='flex flex-wrap justify-center'>
       {createGameCards.map(gameCard => (
-        
+        <Card
+        key={gameCard.id}
+
       ))}
 
     </div>
