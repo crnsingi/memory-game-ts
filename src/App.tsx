@@ -122,6 +122,12 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
       ) : score <= levels[level].maxScore ? (
         <>
         <p>Nice work!</p>
+        <button 
+        className='p-3 bg-green-600 text-white text-2xl'
+        onClick={handleNextLevel}
+        >
+          Next Level
+        </button>
         </>
       )}
 
