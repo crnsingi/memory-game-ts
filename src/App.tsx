@@ -92,8 +92,8 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
   }, [level])
 
   const handleNextLevel = React.useCallback(() => {
-    
-  })
+    setLevel(prevLevel => prevLevel +1)
+  }, [])
 
   return  <div> Memory Game</div>;
 }
