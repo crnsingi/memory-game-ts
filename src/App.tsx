@@ -107,6 +107,7 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
       {createGameCards.map(gameCard => (
         <Card
         key={gameCard.id}
+        card={gameCard}
 
       ))}
 
