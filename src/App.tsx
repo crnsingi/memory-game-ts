@@ -110,6 +110,7 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
         card={gameCard}
         isFlipped={flippedCards.some(flippedCard => flippedCard.id === gameCard.id)}
         isDisabled={flippedCards.length === 2}
+        onFlip={handleCardFlip}
 
       ))}
 
