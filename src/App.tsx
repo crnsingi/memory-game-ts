@@ -129,8 +129,16 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
           Next Level
         </button>
         </>
+      ): (
+        <p>You were over by {score - levels[level].maxScore}</p>
+        <button 
+        className='p-3 bg-red-600 text-white text-2xl'
+        onClick={handleRestart}
+        >
+          Try again ? 
+        </button>
+        </>
       )}
-
     </div>
     </div>
   )
