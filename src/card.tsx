@@ -23,6 +23,16 @@ export function Card({ card, isFlipped, isDisabled, onFlip }: CardProps) {
             disabled={isCardFlipped || isDisabled}
             onClick={handleClick}
         >
+            <div
+            className="absolute w-full h-full flex justify-center items-center left-0 top-0 bg-red-200"
+            style={{ backfaceVisibility: "hidden"}}
+            >
+                ?
+            </div>
+            
+            <div>
+
+            </div>
             {isCardFlipped ? card.value : "?"}
         </button>
     );
