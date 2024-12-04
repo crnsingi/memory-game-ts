@@ -119,6 +119,9 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
       <p>Score: {score}</p>
       {!isDone ? (
         <div>Remaining Moves: {levels[level].maxScore - score}</div>
+      ) : score <= levels[level].maxScore ? (
+        <>
+        </>
       )}
 
     </div>
