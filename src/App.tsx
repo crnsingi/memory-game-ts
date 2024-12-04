@@ -108,6 +108,7 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
         <Card
         key={gameCard.id}
         card={gameCard}
+        isFlipped={flippedCards.some(flippedCard => flippedCard.id === gameCard.id)}
 
       ))}
 
