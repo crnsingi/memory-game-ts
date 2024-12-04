@@ -29,11 +29,13 @@ export function Card({ card, isFlipped, isDisabled, onFlip }: CardProps) {
             >
                 ?
             </div>
-            
-            <div>
 
+          <div
+            className="absolute w-full h-full flex justify-center items-center left-0 top-0 bg-green-200"
+            style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)"}}
+            >
+            {card.value}
             </div>
-            {isCardFlipped ? card.value : "?"}
         </button>
     );
 }
