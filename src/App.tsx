@@ -14,7 +14,7 @@ function shuffleArray<T>(array: Array<T>): Array<T> {
 //Function to create game cards
 function createGameCards(uniqueCards: number): GameCard[] {
   const gameCards = [] as  GameCard[];
-  for (let value = 0; value <= uniqueCards; value++){
+  for (let value = 0; value <= uniqueCards; value++) {
     gameCards.push({
       value,
       isMatched: false,
@@ -70,15 +70,15 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
   }
   setScore((prev) => prev + 1);
   if (flippedCards[0].value === gameCard.value) {
-    setGameCards((prevGameCards) =>
-      prevGameCards.map(prevGameCards) =>
-      [gameCard.id, flippedCards[0].id].includes(prevGameCard.id)
-        ? {
+    setGameCards(prevGameCards => 
+      prevGameCards.map(prevGameCards => 
+        [gameCard.id, flippedCards[0].id].includes(prevGameCard.id) 
+        ?  {
           ...prevGameCard,
           isMatched: true,
         }
-        : prevGameCard,
-    ),
+        : prevGameCard
+    )
   );
   setFlippedCards([])
   } else {
