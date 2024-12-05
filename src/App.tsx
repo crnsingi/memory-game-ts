@@ -13,7 +13,7 @@ function shuffleArray<T>(array: Array<T>): Array<T> {
 
 //Function to create game cards
 function createGameCards(uniqueCards: number): GameCard[] {
-  const gameCards: GameCard[];
+  const gameCards = [] as  GameCard[];
   for (let value = 0; value <= uniqueCards; value++){
     gameCards.push({
       value,
@@ -48,7 +48,7 @@ function App() {
   const [flippedCards, setFlippedCards] = React.useState([] as GameCard[])
   const [score, setScore] = React.useState(0)
 
-const isDone = gameCards.every(gameCard = gameCard.isMatched)
+const isDone = gameCards.every(gameCard => gameCard.isMatched)
 
 React.useEffect(() => {
   const levelConfig = levels[level]
