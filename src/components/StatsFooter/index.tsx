@@ -38,6 +38,10 @@ const StatsFooter: React.FC<StatsFooter> = ({
         </Wrapper>
         ) : ( 
         <Wrapper numberOfPlayers={numberOfPlayers}>
+            <PlayerStatWrapper>
+                <ArrowUp isActive={isFirstPlayerActive}/>
+
+            </PlayerStatWrapper>
 
         </Wrapper>
 
