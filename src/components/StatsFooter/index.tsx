@@ -36,7 +36,10 @@ const StatsFooter: React.FC<StatsFooter> = ({
                 </SpaceAroundWrapper>
             </StatBox>
         </Wrapper>
-    )
+        ) : ( 
+        <Wrapper numberOfPlayers={numberOfPlayers}>
+
+        </Wrapper>
 
 
 }
