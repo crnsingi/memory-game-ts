@@ -29,7 +29,12 @@ const StatsFooter: React.FC<StatsFooter> = ({
                     <span style={{fontSize: "16px"}}>{toHHMMSS(time)}</span>
                 </SpaceAroundWrapper>
             </StatBox>
-            
+            <StatBox>
+                <SpaceAroundWrapper>
+                    <span style={{color: "#6790a0"}}>Moves</span>
+                    <span style={{fontSize: "16px"}}>{moves}</span>
+                </SpaceAroundWrapper>
+            </StatBox>
         </Wrapper>
     )
 
