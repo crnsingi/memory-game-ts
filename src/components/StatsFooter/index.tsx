@@ -25,10 +25,11 @@ const StatsFooter: React.FC<StatsFooter> = ({
         <Wrapper numberOfPlayers={numberOfPlayers}>
             <StatBox>
                 <SpaceAroundWrapper>
-                    
+                    <span style={{color: "#6790a0"}}>Time</span>
+                    <span style={{fontSize: "16px"}}>{toHHMMSS(time)}</span>
                 </SpaceAroundWrapper>
-
             </StatBox>
+            
         </Wrapper>
     )
 
