@@ -68,14 +68,15 @@ const handleCardFlip = React.useCallback((gameCard: GameCard) => {
   if (flippedCards.length !== 1) {
     return
   }
-  setScore((prev) => prev + 1);
+  setScore((prev) => prev + 1)
   if (flippedCards[0].value === gameCard.value) {
-    setGameCards(prevGameCards) =>
-prevGameCards.map(prevGameCards) => [gameCard.id, flippedCards[0].id].includes(prevGameCard.id) ? 
-          {
-          ...prevGameCard,
-          isMatched: true,
-        }
+    setGameCards((prevGameCards) =>
+      prevGameCards.map((prevGameCard) => 
+        [gameCard.id, flippedCards[0].id].includes(prevGameCard.id) 
+          ? {
+              ...prevGameCard,
+              isMatched: true,
+            }
         : prevGameCard,
     ),
   );
@@ -105,7 +106,7 @@ prevGameCards.map(prevGameCards) => [gameCard.id, flippedCards[0].id].includes(p
     <div className='flex flex-col items-center my-auto text-center'> 
     <h1 className='text-3xl'>Memory Game</h1>
     <div className='flex flex-wrap justify-center'>
-      {createGameCards.map(gameCard => (
+      {gameCards.map(gameCard => (
         <Card
         key={gameCard.id}
         card={gameCard}
