@@ -22,8 +22,13 @@ const StatsFooter: React.FC<StatsFooter> = ({
     const isSecondPlayerActive = currentPlayer === 2;
 
     return numberOfPlayers === 1 ? (
-        <Wrapper>
-            
+        <Wrapper numberOfPlayers={numberOfPlayers}>
+            <StatBox>
+                <SpaceAroundWrapper>
+                    
+                </SpaceAroundWrapper>
+
+            </StatBox>
         </Wrapper>
     )
 
