@@ -47,9 +47,13 @@ const StatsFooter: React.FC<StatsFooter> = ({
                         score: {firstPlayerScore}
                         </div>
                     </div>
-
-
+                    </StatBox>
             </PlayerStatWrapper>
+            <PlayerStatWrapper>
+            <ArrowUp isActive={isSecondPlayerActive}/>
+            <StatBox isActive={isSecondPlayerActive}>
+            </PlayerStatWrapper>
+
 
         </Wrapper>
 
