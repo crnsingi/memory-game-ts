@@ -18,5 +18,7 @@ const StatsFooter: React.FC<StatsFooter> = ({
     firstPlayerScore,
     secondPlayerScore,
 }) => {
-    
+    const isFirstPlayerActive = currentPlayer === 1;
+
+
 }
