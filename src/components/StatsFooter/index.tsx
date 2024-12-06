@@ -9,3 +9,14 @@ interface StatsFooter {
     firstPlayerScore: number;
     secondPlayerScore: number;
 }
+
+const StatsFooter: React.FC<StatsFooter> = ({
+    numberOfPlayers,
+    time,
+    moves,
+    currentPlayer,
+    firstPlayerScore,
+    secondPlayerScore,
+}) => {
+    
+}
