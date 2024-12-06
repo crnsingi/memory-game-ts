@@ -54,6 +54,8 @@ const StatsFooter: React.FC<StatsFooter> = ({
             <StatBox isActive={isSecondPlayerActive}>
                 <div>
                     <div>Player 2 </div>
+                    <div style={{fontSize: "16px", fontWeight: "normal", textAlign: "center"}}>
+
                 </div>
             </PlayerStatWrapper>
 
