@@ -43,6 +43,9 @@ const StatsFooter: React.FC<StatsFooter> = ({
                 <StatBox isActive={isFirstPlayerActive}>
                     <div>
                         <div>Player 1 </div>
+                        <div style={{fontSize: "16px", fontWeight: "normal", textAlign: "center"}}>
+                        score: {firstPlayerScore}
+                        </div>
                     </div>
 
 
