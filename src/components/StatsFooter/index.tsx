@@ -55,6 +55,7 @@ const StatsFooter: React.FC<StatsFooter> = ({
                 <div>
                     <div>Player 2 </div>
                     <div style={{fontSize: "16px", fontWeight: "normal", textAlign: "center"}}>
+                        score: {secondPlayerScore}
 
                 </div>
             </PlayerStatWrapper>
