@@ -52,6 +52,9 @@ const StatsFooter: React.FC<StatsFooter> = ({
             <PlayerStatWrapper>
             <ArrowUp isActive={isSecondPlayerActive}/>
             <StatBox isActive={isSecondPlayerActive}>
+                <div>
+                    <div>Player 2 </div>
+                </div>
             </PlayerStatWrapper>
 
 
