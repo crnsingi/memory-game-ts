@@ -1,150 +1,167 @@
-import React from 'react';
-import { GameCard } from './types';
-import { Card } from './card';
+import styled from "@emotion/styled";
+import Button from "./components/buttons/Button";
+import GameScreen from "./components/GameScreen";
+import useGameBoard from "./hooks/useGameBoard";
+import {useCallback, useState} from "react";
+import SettingsScreen from "./components/SettingsScreen";
+import useSettings from "./hooks/useSettings";
+import StatsFooter from "./components/StatsFooter";
+import {GameType} from "./utils/generateGameBoard";
 
-// Function to shuffle an Array 
-function shuffleArray<T>(array: Array<T>): Array<T> {
-  for(let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1 ));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+export type mode = "game" | "settings";
 
-//Function to create game cards
-function createGameCards(uniqueCards: number): GameCard[] {
-  const gameCards = [] as  GameCard[];
-  for (let value = 0; value <= uniqueCards; value++) {
-    gameCards.push({
-      value,
-      isMatched: false,
-      id: `${value}-1`
-    })
-    gameCards.push({
-      value,
-      isMatched: false,
-      id: `${value}-2`
-    })
-  }
-  return shuffleArray(gameCards)
-}
+export default function () {
+  const [mode, setMode] = useState<mode>("game");
+  const {onDifficultyChange, onNumberOfPlayersChange, difficulty, numberOfPlayers} = useSettings();
+  const {
+    onRestart,
+    computedBoardState,
+    onChipClick,
+    time,
+    setTime,
+    setStartTimer,
+    moves,
+    setMoves,
+    onNewGame,
+    currentPlayer,
+    firstPlayerScore,
+    secondPlayerScore,
+    setCurrentPlayer,
+    setFirstPlayerScore,
+    setSecondPlayerScore,
+  } = useGameBoard({
+    difficulty,
+  });
 
-type Level = { 
-  cardCount: number
-  maxScore: number
-}
+  const onSettingsClick = useCallback(() => {
+    setMode("settings");
+  }, [mode]);
 
-const levels: Level [] = [
-  { cardCount: 3, maxScore: 8 },
-  { cardCount: 4, maxScore: 10 },
-  { cardCount: 5, maxScore: 12 },
-  { cardCount: 6, maxScore: 14 },
-  { cardCount: 7, maxScore: 16 },
-]
+  const handleStatsReset = useCallback(() => {
+    setStartTimer(false);
+    setTime(0);
+    setMoves(0);
+    setCurrentPlayer(1);
+    setFirstPlayerScore(0);
+    setSecondPlayerScore(0);
+  }, []);
 
-function App() {
-  const [level, setLevel] = React.useState(0);
-  const [gameCards, setGameCards] = React.useState(() => createGameCards(levels[0].cardCount))
-  const [flippedCards, setFlippedCards] = React.useState([] as GameCard[])
-  const [score, setScore] = React.useState(0)
+  const handleRestart = useCallback(() => {
+    onRestart();
+    setMode("game");
+    handleStatsReset();
+  }, [mode]);
 
-const isDone = gameCards.every(gameCard => gameCard.isMatched)
+  const handleBackToGame = useCallback(() => {
+    setMode("game");
+  }, [mode]);
 
-React.useEffect(() => {
-  const levelConfig = levels[level]
-  if(!levelConfig) {
-    setGameCards([])
-  } else {
-    setGameCards(createGameCards(levelConfig.cardCount))
-  }
-  setScore(0)
-}, [level])
+  const handleNewGame = useCallback(() => {
+    onNewGame(difficulty);
+    setMode("game");
+    handleStatsReset();
+  }, [mode, difficulty]);
 
-const handleCardFlip = React.useCallback((gameCard: GameCard) => {
-  if (!flippedCards.length) {
-    setFlippedCards([gameCard])
-    return
-  }
-  if (flippedCards.length !== 1) {
-    return
-  }
-  setScore((prev) => prev + 1)
-  if (flippedCards[0].value === gameCard.value) {
-    setGameCards((prevGameCards) =>
-      prevGameCards.map((prevGameCard) => 
-        [gameCard.id, flippedCards[0].id].includes(prevGameCard.id) 
-          ? {
-              ...prevGameCard,
-              isMatched: true,
-            }
-        : prevGameCard,
-    ),
+  const handleDifficultyChange = useCallback(
+    (_: React.MouseEvent<HTMLButtonElement, MouseEvent>, gameType: GameType) => {
+      onDifficultyChange(_, gameType);
+      handleStatsReset();
+    },
+    []
   );
-  setFlippedCards([])
-  } else {
-    setFlippedCards(prev => prev.concat(gameCard))
-    setTimeout(() => {
-      setFlippedCards([])
-    }, 1000)
-  }
-}, [flippedCards]);
 
-  const handleRestart = React.useCallback(() => {
-    setGameCards(createGameCards(levels[level].cardCount))
-    setScore(0)
-  }, [level])
-
-  const handleNextLevel = React.useCallback(() => {
-    setLevel(prevLevel => prevLevel +1)
-  }, [])
-
-  if (!levels[level]) {
-    return <h1>You win</h1>
-  }
+  const handleNumberOFPlayersChange = useCallback(
+    (_: React.MouseEvent<HTMLButtonElement, MouseEvent>, players: 2 | 1) => {
+      onNumberOfPlayersChange(_, players);
+      handleStatsReset();
+    },
+    []
+  );
 
   return (
-    <div className='flex flex-col items-center my-auto text-center'> 
-    <h1 className='text-3xl'>Memory Game</h1>
-    <div className='flex flex-wrap justify-center'>
-      {gameCards.map(gameCard => (
-        <Card
-        key={gameCard.id}
-        card={gameCard}
-        isFlipped={flippedCards.some(flippedCard => flippedCard.id === gameCard.id)}
-        isDisabled={flippedCards.length === 2}
-        onFlip={handleCardFlip}
+    <MainWrapper>
+      <StyledHeader>
+        <Title onClick={handleBackToGame}>Memory game</Title>
+        <ButtonsWrapper>
+          <Button onClick={handleRestart} variant="primary">
+            Restart
+          </Button>
+          <Button onClick={onSettingsClick} variant="secondary">
+            Settings
+          </Button>
+        </ButtonsWrapper>
+      </StyledHeader>
+      {mode === "game" ? (
+        <GameScreen
+          computedBoardState={computedBoardState}
+          onChipClick={onChipClick}
+          difficulty={difficulty}
         />
-      ))}
-    </div>
-    <div>
-      <p>Level: {level +1}</p>
-      <p>Score: {score}</p>
-      {!isDone ? (
-        <div>Remaining Moves: {levels[level].maxScore - score}</div>
-      ) : score <= levels[level].maxScore ? (
-        <>
-        <p>Nice work!</p>
-        <button 
-        className='p-3 bg-green-600 text-white text-2xl'
-        onClick={handleNextLevel}
-        >
-          Next Level
-        </button>
-        </>
-      ): (
-        <>
-        <p>You were over by {score - levels[level].maxScore}</p>
-        <button 
-        className='p-3 bg-red-600 text-white text-2xl'
-        onClick={handleRestart}
-        >
-          Try again ? 
-        </button>
-        </>
+      ) : (
+        <SettingsScreen
+          onDifficultyChange={handleDifficultyChange}
+          onNumberOfPlayersChange={handleNumberOFPlayersChange}
+          difficulty={difficulty}
+          numberOfPlayers={numberOfPlayers}
+          handleBackToGame={handleBackToGame}
+          handleNewGame={handleNewGame}
+        />
       )}
-    </div>
-    </div>
-  )
+
+      {mode === "game" ? (
+        <StatsFooter
+          firstPlayerScore={firstPlayerScore}
+          secondPlayerScore={secondPlayerScore}
+          currentPlayer={currentPlayer}
+          numberOfPlayers={numberOfPlayers}
+          time={time}
+          moves={moves}
+        />
+      ) : null}
+    </MainWrapper>
+  );
 }
 
-export default App
+const MainWrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+
+  @media (max-width: 600px) {
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+`;
+
+const StyledHeader = styled.header`
+  display: flex;
+  justify-content: space-around;
+  width: 900px;
+  max-width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-size: 28spx;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  cursor: pointer;
+  @media (max-width: 600px) {
+    text-align: center;
+    display: block;
+  }
+`;
