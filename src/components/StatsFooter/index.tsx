@@ -65,3 +65,56 @@ const StatsFooter: React.FC<StatsFooter> = ({
 };
 
 export default StatsFooter;
+
+const Wrapper = styled.footer<{numberOfPlayers: 1 | 2}>`
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+  gap: 10px;
+
+  @media (max-width: 600px) {
+    flex-direction: ${({numberOfPlayers}) => (numberOfPlayers === 1 ? "column" : "row")};
+    align-items: center;
+  }
+`;
+
+const StatBox = styled.div<{isActive?: boolean}>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+  border-radius: 12px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: ${({isActive}) => (isActive ? "white" : "#31485a")};
+  background-color: ${({isActive}) => (isActive ? "orange" : "#dfe6ec")};
+`;
+
+const SpaceAroundWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+`;
+
+const ArrowUp = styled.div<{isActive?: boolean}>`
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 16px solid ${({isActive}) => (isActive ? "orange" : "transparent")};
+`;
+
+const PlayerStatWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 200px;
+`;
